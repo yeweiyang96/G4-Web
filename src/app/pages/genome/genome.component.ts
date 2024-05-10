@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @Component({
@@ -8,4 +8,6 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
   templateUrl: './genome.component.html',
   styleUrl: './genome.component.scss',
 })
-export class GenomeComponent {}
+export class GenomeComponent {
+  @HostBinding('class.main-content') readonly mainContentClass = true;
+}
