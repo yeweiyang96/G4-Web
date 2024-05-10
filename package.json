@@ -25,7 +25,10 @@
     "@angular/router": "^17.3.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.3"
+    "zone.js": "~0.14.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "@jbrowse/react-linear-genome-view": "^2.2.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.3.5",
@@ -50,6 +53,9 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "prettier": "3.2.5",
     "prettier-eslint": "^16.3.0",
-    "typescript": "~5.4.2"
+    "typescript": "~5.4.2",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.8",
+    "@jbrowse/react-linear-genome-view": "^2.2.0"
   }
 }
