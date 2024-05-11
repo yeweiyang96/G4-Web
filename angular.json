@@ -15,8 +15,39 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "react-dom/client",
+              "hoist-non-react-statics",
+              "quick-lru",
+              "pako",
+              "@jkbonfield/htscodecs",
+              "@mui/system",
+              "@mui/icons-material",
+              "@jbrowse/core",
+              "serialize-error",
+              "clone",
+              "long",
+              "url",
+              "string_decoder",
+              "stream",
+              "xz-decompress",
+              "bzip2",
+              "@gmod/binary-parser"
+
+
+
+
+
+
+           ],
+            "customWebpackConfig": {
+              "path": "./extra-webpack.config.ts",
+              "mergeRules": {
+                "externals": "replace"
+              }
+            } ,
             "outputPath": "dist/g4-web",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -42,7 +73,8 @@
             "stylePreprocessorOptions": {
               "includePaths": ["node_modules", "src", "src/styles"]
             },
-            "scripts": []
+            "scripts": [],
+            "webWorkerTsConfig": "tsconfig.worker.json"
           },
           "configurations": {
             "production": {
@@ -69,8 +101,11 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": { "proxyConfig": "proxy.conf.json" },
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.json",
+            "browserTarget": "my-project:build"
+          },
           "configurations": {
             "production": {
               "buildTarget": "G4-Web:build:production"
@@ -95,7 +130,8 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "webWorkerTsConfig": "tsconfig.worker.json"
           }
         },
         "lint": {

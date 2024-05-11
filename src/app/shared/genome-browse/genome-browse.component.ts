@@ -8,8 +8,9 @@ import {
   ElementRef,
 } from '@angular/core';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot, Root } from 'react-dom/client';
 import View from './genomeView';
+
 const containerElementName = 'jbrowse_linear_genome_view';
 @Component({
   selector: 'app-genome-browse',
@@ -23,18 +24,22 @@ export class GenomeBrowseComponent
 {
   @ViewChild(containerElementName, { static: false })
   containerRef!: ElementRef;
+  public root!: Root;
+  constructor() {}
+
   ngOnChanges(changes: SimpleChanges) {
     console.log('changes', changes);
     this.render();
   }
 
   ngAfterViewInit(): void {
+    this.root = createRoot(this.containerRef.nativeElement);
     this.render();
   }
   ngOnDestroy(): void {
-    ReactDOM.unmountComponentAtNode(this.containerRef.nativeElement);
+    this.root.unmount();
   }
   private render() {
-    ReactDOM.render(React.createElement(View), this.containerRef.nativeElement);
+    this.root.render(React.createElement(View));
   }
 }

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
-
+import { ParsedLocString } from '@jbrowse/core/util';
 import {
   createViewState,
   JBrowseLinearGenomeView,
+
 } from '@jbrowse/react-linear-genome-view'
 import makeWorkerInstance from '@jbrowse/react-linear-genome-view/esm/makeWorkerInstance'
 
 import assembly from './assembly'
 import tracks from './tracks'
 import defaultSession from './defaultSession'
+
 
 type ViewModel = ReturnType<typeof createViewState>
 
@@ -23,10 +25,26 @@ function View() {
       assembly,
       tracks,
       onChange: (patch: any) => {
-        setPatches(previous => previous + JSON.stringify(patch) + '\n')
+        // setPatches(previous => previous + JSON.stringify(patch) + '\n')
       },
       defaultSession,
       configuration: {
+        "theme" :{
+          "palette": {
+            "primary": {
+              "main": "#005cbb"
+            },
+            "secondary": {
+              "main": "#005cbb"
+            },
+            "tertiary": {
+              "main": "#d7e3ff"
+            },
+            "quaternary": {
+              "main": "#005cbb"
+            }
+          }
+        },
         rpc: {
           defaultDriver: 'WebWorkerRpcDriver',
         },
@@ -44,7 +62,7 @@ function View() {
   }
 
   return (
-    <>
+    <React.StrictMode>
       <h1>
         JBrowse 2 React Linear Genome View Demo (with create-react-app v5)
       </h1>
@@ -70,7 +88,13 @@ function View() {
         </p>
         <button
           onClick={() => {
-            viewState.session.view.navToLocString('10:94762681..94855547')
+            viewState.session.view.navToLocString('10:94762681..94855547');
+            const high: Required<ParsedLocString> = {
+              refName: 'chr10', start: 94762681, end: 94855547,
+              assemblyName: 'hg38',
+              reversed: false
+            };
+            viewState.session.view.addToHighlights(high);
           }}
         >
           CYP2C19
@@ -111,7 +135,7 @@ function View() {
         . The patches for the component on this page are shown below.
       </p>
       <textarea value={patches} readOnly rows={5} cols={80} wrap="off" />
-    </>
+    </React.StrictMode>
   )
 }
 
