@@ -17,12 +17,6 @@
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "sourceMap": true,
-            "vendorChunk": true,
-            "extractLicenses": false,
-        "buildOptimizer": false,
-        "optimization": false,
-        "namedChunks": true,
             "allowedCommonJsDependencies": [
               "react-dom/client",
               "hoist-non-react-statics",
@@ -90,12 +84,22 @@
                   "maximumError": "7kb"
                 }
               ],
-              "outputHashing": "all"
+              "commonChunk": false,
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
             },
             "development": {
-              "optimization": false,
+              "sourceMap": true,
+              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true
+              "buildOptimizer": false,
+              "optimization": false,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"

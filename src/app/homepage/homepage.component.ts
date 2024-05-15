@@ -1,6 +1,4 @@
-import { Component, HostBinding, Inject, Optional } from '@angular/core';
-import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-
+import { Component, HostBinding } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LogoComponent } from '../shared/logo/logo.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,13 +22,4 @@ import { FooterComponent } from '../shared/footer/footer.component';
 })
 export class HomepageComponent {
   @HostBinding('class.main-content') readonly mainContentClass = true;
-  @HostBinding('class.animations-disabled')
-  readonly animationsDisabled: boolean;
-
-  constructor(
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationsModule?: string
-  ) {
-    this.animationsDisabled = animationsModule === 'NoopAnimations';
-    this.animationsDisabled = false;
-  }
 }
