@@ -1,12 +1,9 @@
 {
   "/api": {
-    "target": "http://100.85.133.41",
-    "secure": true,
-    "logLevel": "debug",
+    "target": "http://100.85.133.41:8000",
+    "secure": false,
+    "logLevel": "error",
     "changeOrigin": true,
-    "headers": {
-      "Origin": "http://100.85.133.41"
-    },
     "pathRewrite": {
       "^/api": ""
     }

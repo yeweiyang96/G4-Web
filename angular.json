@@ -17,6 +17,12 @@
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "sourceMap": true,
+            "vendorChunk": true,
+            "extractLicenses": false,
+        "buildOptimizer": false,
+        "optimization": false,
+        "namedChunks": true,
             "allowedCommonJsDependencies": [
               "react-dom/client",
               "hoist-non-react-statics",
@@ -98,7 +104,7 @@
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "proxyConfig": "proxy.conf.json",
-            "browserTarget": "my-project:build"
+            "buildTarget": "G4-Web:build"
           },
           "configurations": {
             "production": {
