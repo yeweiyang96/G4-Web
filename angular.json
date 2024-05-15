@@ -35,12 +35,6 @@
               "xz-decompress",
               "bzip2",
               "@gmod/binary-parser"
-
-
-
-
-
-
            ],
             "customWebpackConfig": {
               "path": "./extra-webpack.config.ts",

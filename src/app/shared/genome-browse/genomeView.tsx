@@ -11,10 +11,12 @@ import makeWorkerInstance from '@jbrowse/react-linear-genome-view/esm/makeWorker
 import assembly from './assembly'
 import tracks from './tracks'
 import defaultSession from './defaultSession'
+import Feature_Color from './myplugin';
+
+
 
 
 type ViewModel = ReturnType<typeof createViewState>
-
 function View() {
   const [viewState, setViewState] = useState<ViewModel>()
   const [patches, setPatches] = useState('')
@@ -23,10 +25,13 @@ function View() {
   useEffect(() => {
     const state = createViewState({
       assembly,
+      plugins: [Feature_Color],
       tracks,
-      onChange: (patch: any) => {
-        // setPatches(previous => previous + JSON.stringify(patch) + '\n')
-      },
+      // onChange: (patch: any) => {
+
+      //   // setPatches(previous => previous + JSON.stringify(patch) + '\n')
+      // },
+
       defaultSession,
       configuration: {
         "theme" :{
@@ -55,6 +60,7 @@ function View() {
       createRootFn: createRoot,
     })
     setViewState(state)
+
   }, [])
 
   if (!viewState) {
@@ -67,18 +73,8 @@ function View() {
         JBrowse 2 React Linear Genome View Demo (with create-react-app v5)
       </h1>
       <JBrowseLinearGenomeView viewState={viewState} />
-      <h3>Code</h3>
-      <p>
-        The code for this app is available at{' '}
-        <a
-          href="https://github.com/GMOD/jbrowse-react-linear-genome-view-cra5-demo"
-          target="_blank"
-          rel="noreferrer"
-        >
-          https://github.com/GMOD/jbrowse-react-linear-genome-view-cra5-demo
-        </a>
-        .
-      </p>
+
+
       <h3>Control the view</h3>
       <div>
         <p>

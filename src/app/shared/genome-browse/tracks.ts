@@ -32,6 +32,21 @@ const tracks = [
         assemblyNames: ['GRCh38'],
       },
     },
+    displays: [
+      {
+        id: 'imlosffcDYilz1wDu0WaN',
+        displayId: 'genes-LinearBasicDisplay',
+        type: 'LinearBasicDisplay',
+        configuration: 'genes-LinearBasicDisplay',
+        renderer: {
+          type: 'SvgFeatureRenderer',
+          color1:
+            "jexl: cast({ region: 'green', exon: 'purple', CDS: 'yellow', match: 'gray' })[get(feature, 'type')]",
+          color2: 'blue',
+          color3: '#DEA3DA',
+        },
+      },
+    ],
   },
   {
     type: 'FeatureTrack',
