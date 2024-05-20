@@ -23,14 +23,13 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+    "@jbrowse/react-linear-genome-view": "^2.11.0",
+    "node-polyfill-webpack-plugin": "^3.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.3",
-    "@jbrowse/react-linear-genome-view": "^2.11.0",
-    "node-polyfill-webpack-plugin": "^3.0.0"
-
+    "zone.js": "~0.14.3"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^17.0.2",
