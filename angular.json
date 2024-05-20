@@ -52,12 +52,12 @@
             "styles": [
                 "src/styles.scss",
               {
-                "inject": true,
+                "inject": false,
                 "input": "src/styles/custom-themes/azure-blue.scss",
                 "bundleName": "azure-blue"
               },
               {
-                "inject": true,
+                "inject": false,
                 "input": "src/styles/custom-themes/green-chartreuse.scss",
                 "bundleName": "green-chartreuse"
               }
