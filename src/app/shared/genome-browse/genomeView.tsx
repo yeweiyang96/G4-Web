@@ -8,24 +8,28 @@ import {
 } from '@jbrowse/react-linear-genome-view'
 import makeWorkerInstance from '@jbrowse/react-linear-genome-view/esm/makeWorkerInstance'
 
-import assembly from './assembly'
+// import assembly from './assembly'
 import tracks from './tracks'
 import defaultSession from './defaultSession'
 import Feature_Color from './myplugin';
 
 
+function fetchAssembly(config: string) {
+  const data1 = require(`/src/assets/jbrowse-config/${config}.ts`);
+  return data1.default;
+}
 
 
 type ViewModel = ReturnType<typeof createViewState>
-function View() {
+function View(config: any) {
   const [viewState, setViewState] = useState<ViewModel>()
   const [patches, setPatches] = useState('')
   const [stateSnapshot, setStateSnapshot] = useState('')
+  const assembly = fetchAssembly(config.config)
 
   useEffect(() => {
     const state = createViewState({
       assembly,
-      plugins: [Feature_Color],
       tracks,
       // onChange: (patch: any) => {
 
@@ -70,7 +74,7 @@ function View() {
   return (
     <React.StrictMode>
       <h1>
-        JBrowse 2 React Linear Genome View Demo (with create-react-app v5)
+        JBrowse
       </h1>
       <JBrowseLinearGenomeView viewState={viewState} />
 

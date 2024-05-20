@@ -6,8 +6,9 @@ import {
   SimpleChanges,
   ViewChild,
   ElementRef,
+  Input,
 } from '@angular/core';
-import * as React from 'react';
+import { createElement } from 'react';
 import { createRoot, Root } from 'react-dom/client';
 import View from './genomeView';
 
@@ -22,24 +23,30 @@ const containerElementName = 'jbrowse_linear_genome_view';
 export class GenomeBrowseComponent
   implements OnChanges, AfterViewInit, OnDestroy
 {
-  @ViewChild(containerElementName, { static: false })
+  @ViewChild(containerElementName, { static: true })
   containerRef!: ElementRef;
-  public root!: Root;
-  constructor() {}
+  // 配置选择物种的jbrowse的配置文件
+  @Input()
+  public config!: string;
+  root!: Root;
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('changes', changes);
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('change', changes);
     this.render();
   }
 
   ngAfterViewInit(): void {
-    this.root = createRoot(this.containerRef.nativeElement);
+    console.log('after');
     this.render();
   }
   ngOnDestroy(): void {
+    console.log('destroy');
     this.root.unmount();
   }
   private render() {
-    this.root.render(React.createElement(View));
+    if (!this.root) {
+      this.root = createRoot(this.containerRef.nativeElement);
+    }
+    this.root.render(createElement(View, { config: this.config }));
   }
 }

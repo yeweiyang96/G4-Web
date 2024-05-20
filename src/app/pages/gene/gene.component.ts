@@ -9,4 +9,5 @@ import { GenomeBrowseComponent } from '../../shared/genome-browse/genome-browse.
 })
 export class GeneComponent {
   @HostBinding('class.main-content') readonly mainContentClass = true;
+  public config = 'assembly';
 }
