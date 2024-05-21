@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "G4-Web": {
+    "g4-vista": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -42,7 +42,7 @@
                 "externals": "replace"
               }
             } ,
-            "outputPath": "dist/g4-web",
+            "outputPath": "dist/g4-vista",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -106,14 +106,14 @@
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "proxyConfig": "proxy.conf.json",
-            "buildTarget": "G4-Web:build"
+            "buildTarget": "g4-vista:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "G4-Web:build:production"
+              "buildTarget": "g4-vista:build:production"
             },
             "development": {
-              "buildTarget": "G4-Web:build:development"
+              "buildTarget": "g4-vista:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -121,7 +121,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "G4-Web:build"
+            "buildTarget": "g4-vista:build"
           }
         },
         "test": {
