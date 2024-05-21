@@ -12,7 +12,6 @@ import { createElement } from 'react';
 import { createRoot, Root } from 'react-dom/client';
 import { View } from './genomeView';
 import { ParsedLocString } from '@jbrowse/core/util';
-
 const containerElementName = 'jbrowse_linear_genome_view';
 @Component({
   selector: 'app-genome-browse',
