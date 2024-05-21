@@ -38,7 +38,9 @@ yarn-error.log
 testem.log
 /typings
 /.nx
+.nx/
 
 # System files
 .DS_Store
 Thumbs.db
+.nx/cache/18.3.4-nx.darwin-arm64.node
