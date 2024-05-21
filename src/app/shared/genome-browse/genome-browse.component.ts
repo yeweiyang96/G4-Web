@@ -10,7 +10,8 @@ import {
 } from '@angular/core';
 import { createElement } from 'react';
 import { createRoot, Root } from 'react-dom/client';
-import View from './genomeView';
+import { View } from './genomeView';
+import { ParsedLocString } from '@jbrowse/core/util';
 
 const containerElementName = 'jbrowse_linear_genome_view';
 @Component({
@@ -28,6 +29,8 @@ export class GenomeBrowseComponent
   // 配置选择物种的jbrowse的配置文件
   @Input()
   public config!: string;
+  @Input()
+  public location!: ParsedLocString;
   root!: Root;
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -47,6 +50,8 @@ export class GenomeBrowseComponent
     if (!this.root) {
       this.root = createRoot(this.containerRef.nativeElement);
     }
-    this.root.render(createElement(View, { config: this.config }));
+    this.root.render(
+      createElement(View, { config: this.config, location: this.location })
+    );
   }
 }

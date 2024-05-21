@@ -46,10 +46,6 @@ const session = {
             displayId: 'genes-LinearBasicDisplay',
             type: 'LinearBasicDisplay',
             configuration: 'genes-LinearBasicDisplay',
-            renderer: {
-              type: 'SvgFeatureRenderer',
-              color1: 'jexl:Feature_Color()',
-            },
           },
         ],
       },

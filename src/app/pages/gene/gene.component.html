@@ -1,2 +1,6 @@
-<p>gene works!</p>
-<app-genome-browse [config]="this.config"></app-genome-browse>
+<button (click)="onClick('')">off</button>
+<button (click)="onClick('assembly')">on</button>
+<button (click)="navTo()">nav</button>
+<app-genome-browse
+  [config]="this.config"
+  [location]="this.location"></app-genome-browse>

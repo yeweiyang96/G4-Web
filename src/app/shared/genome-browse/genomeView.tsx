@@ -7,11 +7,14 @@ import {
 
 } from '@jbrowse/react-linear-genome-view'
 import makeWorkerInstance from '@jbrowse/react-linear-genome-view/esm/makeWorkerInstance'
-
 // import assembly from './assembly'
 import tracks from './tracks'
 import defaultSession from './defaultSession'
-import Feature_Color from './myplugin';
+
+interface ViewProps {
+  config: string;
+  location: ParsedLocString;
+}
 
 
 function fetchAssembly(config: string) {
@@ -21,21 +24,16 @@ function fetchAssembly(config: string) {
 
 
 type ViewModel = ReturnType<typeof createViewState>
-function View(config: any) {
+export const View: React.FC<ViewProps> = ({config, location}) => {
   const [viewState, setViewState] = useState<ViewModel>()
   const [patches, setPatches] = useState('')
   const [stateSnapshot, setStateSnapshot] = useState('')
-  const assembly = fetchAssembly(config.config)
+  const assembly = fetchAssembly(config)
 
   useEffect(() => {
     const state = createViewState({
       assembly,
       tracks,
-      // onChange: (patch: any) => {
-
-      //   // setPatches(previous => previous + JSON.stringify(patch) + '\n')
-      // },
-
       defaultSession,
       configuration: {
         "theme" :{
@@ -70,6 +68,10 @@ function View(config: any) {
   if (!viewState) {
     return null
   }
+  if (location) {
+    viewState.session.view.navToLocations([location]);
+    viewState.session.view.addToHighlights( location as Required<ParsedLocString>);
+  }
 
   return (
     <React.StrictMode>
@@ -77,7 +79,7 @@ function View(config: any) {
         JBrowse
       </h1>
       <JBrowseLinearGenomeView viewState={viewState} />
-
+      <p>region: 'green', exon: 'purple', CDS: 'yellow', match: 'gray'</p>
 
       <h3>Control the view</h3>
       <div>
@@ -137,6 +139,6 @@ function View(config: any) {
       <textarea value={patches} readOnly rows={5} cols={80} wrap="off" />
     </React.StrictMode>
   )
-}
+};
 
-export default View;
+// export default View;
